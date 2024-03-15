@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class Tugas1 {
+
+    private static final String[] daftarSiswa = { "202310370311128"};
+    private static final String usernameAdmin = "admin";
+    private static final String passwordAdmin = "adm1n";
+    private static int indeksSiswa;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean loop = true;
+
+        while (loop) {
+            tampilkanMenu();
+            int pilihan = scanner.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    loginSiswa(scanner);
+                    break;
+                case 2:
+                    loginAdmin(scanner);
+                    break;
+                case 3:
+                    System.out.println("Adios");
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid!");
+            }
+        }
+    }
+
+    private static void tampilkanMenu() {
+        System.out.println("=== Sistem Perpustakaan ===");
+        System.out.println("1. Login Siswa");
+        System.out.println("2. Login Admin");
+        System.out.println("3. Keluar");
+        System.out.print("Masukkan pilihan Anda: ");
+    }
+
+    private static void loginSiswa(Scanner scanner) {
+        System.out.print("Masukkan NIM Anda: ");
+        String nim = scanner.next();
+
+        boolean ditemukan = false;
+        for (int i = 0; i < daftarSiswa.length; i++) {
+            if (daftarSiswa[i].equals(nim)) {
+                indeksSiswa = i;
+                ditemukan = true;
+                break;
+            }
+        }
+
+        if (ditemukan) {
+            System.out.println("Login berhasil!");
+            // Tampilkan menu untuk siswa
+        } else {
+            System.out.println("NIM tidak ditemukan!");
+        }
+    }
+
+    private static void loginAdmin(Scanner scanner) {
+        System.out.print("Masukkan username: ");
+        String username = scanner.next();
+        System.out.print("Masukkan password: ");
+        String password = scanner.next();
+
+        if (username.equals(usernameAdmin) && password.equals(passwordAdmin)) {
+            System.out.println("Login berhasil!");
+            // Tampilkan menu untuk admin
+        } else {
+            System.out.println("Username atau password tidak valid!");
+        }
+    }
+}
